@@ -1,0 +1,30 @@
+A = [[21,12,44],
+    [33,41,12],
+    [23,41,42],
+    [23,42,33]]
+B = [[34, 21, 32, 41 ,25],
+    [14, 42, 43, 14, 31],
+    [54, 45, 52, 42, 23],
+    [33, 15, 51, 31, 35],
+    [21, 52, 33, 13, 23]]
+
+def treasure_hunts(array):
+    found  = False
+    outer_index, inter_index = 0, 0
+    path = ''
+    while not found:
+        
+        cell_value = array[outer_index][inter_index]
+        cell_row_column = 10 * (outer_index+1) + inter_index + 1
+
+        if cell_value == cell_row_column:
+            path = path + f'The treasure is: {cell_value}'
+            found = True
+        else:
+            ten_digit, unit_digit = cell_value // 10, cell_value % 10
+            outer_index, inter_index = ten_digit - 1,  unit_digit - 1
+            path = path + str(cell_value) + " -> "
+    return path 
+
+print(treasure_hunts(A))
+print(treasure_hunts(B))
