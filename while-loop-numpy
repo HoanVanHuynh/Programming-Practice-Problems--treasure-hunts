@@ -1,0 +1,24 @@
+
+import numpy as np
+
+A = np.array([[34, 21, 32, 41 ,25],
+                     [14, 42, 43, 14, 31],
+                     [54, 45, 52, 42, 23],
+                     [33, 15, 51, 31, 35],
+                     [21, 52, 33, 13, 23]])
+
+def treasure_hunts(array, outer_index, inter_index):
+
+    cell_value = array[outer_index, inter_index]
+    cell_row_column = 10 * (outer_index+1) + inter_index + 1
+
+    if cell_value == cell_row_column:
+        return f'The treasure is: {cell_value}'
+
+    else:
+       ten_digit, unit_digit = cell_value // 10, cell_value % 10
+       path = str(cell_value) + " -> "
+       return path + treasure_hunts(array, ten_digit - 1, unit_digit - 1)
+
+
+print(treasure_hunts(A,0,0))
